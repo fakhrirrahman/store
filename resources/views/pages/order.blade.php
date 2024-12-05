@@ -98,18 +98,13 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-card" action="{{ route('order.store') }}" method="POST">
+        <form class="form-card" action="{{ route('orders.store') }}" method="POST">
             @csrf
             <h2 class="form-title">Create New Order</h2>
 
             <div class="form-group">
-                <label for="user_id">Customer</label>
-                <select name="user_id" id="user_id" required>
-                    <option value="">Select Customer</option>
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endforeach
-                </select>
+                <label for="name">Customer Name</label>
+                <input type="text" name="name" id="name" required>
             </div>
 
             <div class="form-group">
@@ -128,7 +123,6 @@
                 <label for="quantity">Quantity</label>
                 <input type="number" name="quantity" id="quantity" min="1" required>
             </div>
-
             <div class="calculated-total">
                 Total: Rp <span id="total">0</span>
             </div>

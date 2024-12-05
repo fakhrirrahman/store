@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('oders', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->ulid('user_id');
             $table->ulid('product_id');
+            $table->string('name');
             $table->decimal('total', 10, 2);
             $table->string('status');
             $table->string('created_by')->nullable();

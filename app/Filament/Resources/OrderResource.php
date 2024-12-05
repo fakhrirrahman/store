@@ -31,14 +31,15 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                Hidden::make('user_id')
-                    ->default(Auth::id()),
                 Select::make('product_id')
                     ->label('Product')
                     ->options(
                         product::query()
                             ->pluck('name', 'id')
                     )
+                    ->required(),
+                TextInput::make('name')
+                    ->label('Name')
                     ->required(),
                 Select::make('status')
                     ->label('Status')
@@ -57,8 +58,8 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label('User'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name'),
                 Tables\Columns\TextColumn::make('product.name')
                     ->label('Product'),
                 Tables\Columns\TextColumn::make('total')

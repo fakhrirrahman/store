@@ -5,7 +5,7 @@
     <div class="min-h-screen w-2/5">
       <div class="flex h-full w-full flex-col justify-center px-14">
         <h1 class="text-3xl font-semibold text-slate-800">Daftar</h1>
-        <form class="mt-7" action="{{ route('auth.register') }}" method="POST">
+        <form class="mt-7" action="{{ route('register') }}" method="POST">
           @csrf
           <div class="flex flex-col">
             <div class="flex flex-col space-y-1">
@@ -135,7 +135,7 @@
 
         <p class="mt-4 text-center">
           Sudah punya akun?
-          <a href="{{ route('auth.login.view') }}" class="font-medium underline hover:text-[#0021A3]">Masuk</a>
+          <a href="{{ route('login') }}" class="font-medium underline hover:text-[#0021A3]">Masuk</a>
         </p>
       </div>
     </div>
