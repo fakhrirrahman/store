@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 
@@ -15,6 +16,12 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');

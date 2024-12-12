@@ -11,25 +11,20 @@ class Oders extends Model
     use HasFactory, HasUlids;
 
     const STATUS = [
-        'pending' => 'Pending',
-        'processing' => 'Processing',
-        'completed' => 'Completed',
-        'cancelled' => 'Cancelled',
+        'PENDING' => 'PENDING',
+        'PROCESSING' => 'PROCESSING',
+        'COMPLETED' => 'COMPLETED',
+        'CANCELLED' => 'CANCELLED',
     ];
 
     protected $fillable = [
-        'user_id',
         'product_id',
+        'name',
         'total',
         'status',
         'created_by',
         'updated_by',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
     public function product()
     {
@@ -44,5 +39,10 @@ class Oders extends Model
     public function editor()
     {
         return $this->belongsTo(User::class, 'updated_by')->select('id', 'name');
+    }
+
+    public function price()
+    {
+        return $this->product->price;
     }
 }

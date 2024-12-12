@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('oders', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->ulid('product_id');
             $table->string('name');
-            $table->decimal('total', 10, 2);
-            $table->string('status');
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oders');
+        Schema::dropIfExists('roles');
     }
 };
