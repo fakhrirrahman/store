@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -38,21 +39,25 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
+            'role_id' => 'required',
         ]);
 
-        $user = User::create($request->only('name', 'email') + [
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => bcrypt($request->password),
+            'role_id' => Role::where('name', Role::NAME['USER'])->first()->id,
         ]);
 
         auth()->login($user);
 
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 
     public function logout()
     {
         auth()->logout();
 
-        return redirect()->route('home');
+        return redirect()->route('login');
     }
 }

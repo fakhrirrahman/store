@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +50,8 @@
             color: #374151;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #d1d5db;
@@ -58,7 +60,8 @@
             transition: border-color 0.2s;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
@@ -96,6 +99,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <form class="form-card" action="{{ route('orders.store') }}" method="POST">
@@ -112,9 +116,9 @@
                 <select name="product_id" id="product_id" required>
                     <option value="">Select Product</option>
                     @foreach($products as $product)
-                        <option value="{{ $product->id }}" data-price="{{ $product->price }}">
-                            {{ $product->name }} - Rp {{ number_format($product->price, 0, ',', '.') }}
-                        </option>
+                    <option value="{{ $product->id }}" data-price="{{ $product->price }}">
+                        {{ $product->name }} - Rp {{ number_format($product->price, 0, ',', '.') }}
+                    </option>
                     @endforeach
                 </select>
             </div>
@@ -129,8 +133,8 @@
 
             <input type="hidden" name="price" id="price">
             <input type="hidden" name="total" id="total_input">
-            <input type="hidden" name="created_by" value="{{ auth()->user()->name }}">
-            <input type="hidden" name="updated_by" value="{{ auth()->user()->name }}">
+            {{-- <input type="hidden" name="created_by" value="{{ auth()->user()->name }}">
+            <input type="hidden" name="updated_by" value="{{ auth()->user()->name }}"> --}}
 
             <button type="submit" class="submit-btn">Create Order</button>
         </form>
@@ -160,4 +164,5 @@
         });
     </script>
 </body>
+
 </html>
